@@ -1,0 +1,382 @@
+\documentclass{beamer}
+\usepackage{beamerthemesplit} % new
+\begin{document}
+\title{How the market predicts the future}
+\author{Joseph Clark}
+\date{April 23 2010}
+ 
+\frame{\titlepage}
+ 
+%\frame{\frametitle{Table of contents}\tableofcontents}
+ 
+\frame{\frametitle{The old and the new}
+
+Basic idea: Instead of being and selling \textbf{prices} we now buy and sell \textbf{probabilities}.
+
+\begin{block}{Traditional approach to investing}
+\begin{itemize}
+\item Market price of a stock is \$100
+\item You think the fair price is \$110  dollars
+\item You buy the stock
+\end{itemize}
+\end{block}
+
+
+}
+
+\frame{
+
+\begin{block}{Modern approach to investing}
+\begin{exampleblock}{Probability trading}
+\begin{itemize}
+\item Market \textbf{probability} of the price being above \$105 in one year's time is 40\% (determined from option prices)
+\item \textbf{Buy the probability}.
+\end{itemize}
+\end{exampleblock}
+
+\begin{exampleblock}{Volatility trading}
+\begin{itemize}
+\item Market thinks the volatility (standard deviation) of price returns on the S\&P 500  will be 17\% over the next month.
+\item Buy or sell a \textbf{volatility swap}
+\item Trading volatility is a compound trade on probabilities
+\end{itemize}
+\end{exampleblock}
+\end{block}
+}
+
+
+\frame{
+
+\begin{block}{Advantage of modern approach}
+\begin{itemize}
+\item \textbf{More flexible}: construct targeted exposures across the full range of possible outcomes
+\item \textbf{At least as good as traditional approach}: forward price is the market threshold for 50\% probability
+\end{itemize}
+\end{block}
+
+}
+ 
+%\section{Section no.1}
+\frame{\frametitle{Fundamentals: The price-space-time continuum}
+ 
+ What are these probabilities defined over?
+ 
+\begin{itemize}
+\item A price is specific to a \textbf{location} and a \textbf{time}. The map of prices throughout time and space is the \textbf{price-space-time} continuum.\\
+\item The surface of price-space-time includes \textbf{spot} and \textbf{forward} prices and is connected by \textbf{time and space arbitrage}
+    \begin{itemize}
+    \item Cash and carry arbitrage: buy and hold to sell later\
+    \item Transport arbitrage: buy at one place and sell at another place\\
+    \end{itemize}
+\end{itemize}
+ 
+\begin{exampleblock}{Price space time for oil}
+ 
+The price of a barrel of oil is different delivered today or next week; Queensland or Texas. But the difference between prices is bounded by transport price and the cost of borrowing money and storing oil.
+ 
+[figure of price at L1 and L2]
+\end{exampleblock}
+ 
+%\end{itemize}
+}
+ 
+ 
+\frame{\frametitle{Subjective probabilities over price}
+ 
+Each slice of price-space-time has a \textbf{subjective probability distribution}
+ 
+\begin{itemize}
+\item Made up by whoever is predicting
+\item Defines the probability of the price being at any point between 0 and $\infty$ in the future
+\item Probability of range is area under the curve.\\
+\item Expected value under the probability distribution is the future fair value.\\
+\end{itemize}
+ 
+[Pic of of Prob dist at three times]
+ 
+ 
+\frame{\frametitle{Market probabilities over price}
+ 
+Each point in price-space-time has a \textbf{market probability distribution} (risk neutral probability distribution)
+ 
+\begin{itemize}
+\item Observable and tradable if there is a vanilla options market
+\item Defines the probability of the price being at any point between 0 and $\infty$ in the future
+\item Probability of range is area under the curve.\\
+\item Expected value under the probability distribution is the \textbf{forward price}.\\
+\end{itemize}
+ 
+[Pic of of Prob dist at three times]
+ 
+\begin{exampleblock}{Price of oil next year in Texas}
+ 
+[figure of price at L1 and L2]
+ 
+\end{exampleblock}
+}
+ 
+\frame{\frametitle{Trading the probability distribution}
+ 
+\begin{block}{How to trade probabilities}
+\begin{itemize}
+\item Pick a slice of the price-space-time continuum (e.g. soy beans in May 2013 in the US)
+\item Construct your subjective probabilities
+\item Calculate the market probabilities
+\item Trade your distribution against the market
+\end{itemize}
+\end{block}
+ 
+[pic of subjective and risk neutral]
+ 
+}
+ 
+\frame{\frametitle{Trading the forward distribution (1): spot vs forward}
+ 
+\begin{block}{Punting long/short against the forward price}
+\begin{itemize}
+\item Determine the average value under your subjective distribution\\
+\item Compare to the forward price
+\begin{itemize}
+\item If greater than the forward price: buy the forward
+\item If less than the forward price: sell the forward
+\end{itemize}
+\end{itemize}
+\end{block}
+
+ 
+}
+ 
+\frame{\frametitle{Trading the forward distribution (2): Binaries}
+ 
+A binary is a security that pays \$1 if the price is above some value $K$ and \$0 otherwise
+ 
+[pic of binary]
+ 
+The market price of a binary is also the market probability.
+ 
+\begin{block}{Buying or selling probabilities}
+\begin{itemize}
+\item Determine the probability of the price being greater than some value, e.g. P(S\&P 500 $>$ 1500 in one year)\\
+\begin{itemize}
+\item If greater market probability: buy a binary
+\item If less than market probability: sell a binary
+\end{itemize}
+\end{itemize}
+\end{block}
+ 
+}
+ 
+\frame{\frametitle{Trading the forward distribution (3): Call and put options}
+ 
+\begin{itemize}
+\item A \textbf{call option} pays $\max (S(T)-K,0)$
+\item A \textbf{put option} pays $\max (K-S(T),0)$
+\end{itemize}
+ 
+[pic of call and puts]
+ 
+ 
+\begin{block}{Punting options}
+\begin{itemize}
+\item Determine the expected value of the option under your probability distribution (multiple payoff by probability)\\
+\begin{itemize}
+\item If greater than market option price: buy option
+\item If less than market option price: sell option
+\end{itemize}
+\end{itemize}
+\end{block}
+ 
+[Pic of option payoff superimposed on probability]
+ 
+}
+ 
+ 
+ 
+\frame{\frametitle{Trading the forward distribution (4): Trading the price path}
+ 
+The \textbf{variance} of returns is expected value over some time is \textbf{the expected squared deviation from the average}:
+ 
+\[V \equiv E[(\mbox{price return(t)} - \mbox{average price return})^2] \]
+ 
+ 
+\begin{itemize}
+\item Determine the expected variance under your probability distribution of the price at each point in time\\
+\item Determine the market price of variance under the market's probability distributions
+\begin{itemize}
+\item If expected variance $>$ market variance. Buy variance swap
+\item If expected variance $<$ market variance. Sell variance swap
+\end{itemize}
+\end{itemize}
+ 
+ }
+ 
+ \frame{
+ 
+ \begin{exampleblock}{A volatility swap}
+ The 30 day volatility swap rate for the S\&P 500 index is $K_{var} = 17.2$. We \textbf{buy} \$10,000,000 notional the swap. After 30 days the realised  volatility of log prices is 22.5. The payoff of the swap is:
+ 
+ \[\mbox{volatility swap payoff} =  \mbox{(realized volatility - swap)* notional } = (22.5-17.5)*10m = 40m\]
+ 
+ \end{exampleblock}
+ 
+  E.g of variance swap. Pic of VIX index
+ 
+ }
+ 
+ \frame{
+ 
+
+ \begin{block}{Other ways to trade variance}
+\begin{itemize}
+\item Volatility swap\\
+\item Trade delta hedged options\\
+\end{itemize}
+ \end{block}
+ 
+ 
+  \begin{block}{Other statistical characteristics to trade}
+\begin{itemize}
+\item Skewness (asymmetry between up and down moves)\\
+\item Kurtosis (fat tails)\\
+\end{itemize}
+ \end{block}
+ 
+ }
+ 
+ 
+\frame{\frametitle{Practical probability trading examples}
+
+\begin{exampleblock}{You don't know where the price of AUD/USD will go but you're positive that it won't go above 1.25 in three months.  }
+
+
+\begin{itemize}
+\item Sell three month binary at 1.25
+\item Sell three month call options at 1.25
+\end{itemize}
+\end{exampleblock}
+ }
+ 
+ \frame{
+ 
+ \begin{exampleblock}{You don't know where the price of oil will go but you're sure that it will be at least +/- 10\% by next week }
+
+
+\begin{itemize}
+\item Buy puts at 90\% of the current price
+\item Buy calls at 110\% of the current price
+\item Buy a volatility or variance swap (depending on swap rate)
+\end{itemize}
+\end{exampleblock}
+ 
+ }
+ 
+ \frame{
+ \begin{exampleblock}{You think the market is much too worried about a crash in equities}
+
+
+\begin{itemize}
+\item (Traditional approach:) Buy! Buy! Buy! Then borrow and buy some more.
+\item (Modern approach) Sell put options on the S\&P significantly below the current price
+\item Buy binaries below the current price
+\item Sell variance/volatiltiy
+\end{itemize}
+\end{exampleblock}
+
+}
+
+\frame{
+ 
+\begin{exampleblock}{You think the market is not worried enough about a crash in equites}
+
+
+\begin{itemize}
+\item (Traditional approach): Sell all your equities. Stock up on canned beans and ammunition.
+\item (Modern approach): Buy put options on the S\&P significantly below the current price
+\item Sell binaries below the current price
+\item Buy variance/volatility
+\end{itemize}
+\end{exampleblock}
+}
+ 
+ 
+\frame{
+ \begin{exampleblock}{The current RBA cash rate is 5\%. You think that the RBA will definitely raise rates 25 basis points but definitely not more}
+
+
+\begin{itemize}
+\item (Traditional approach): Buy cash rate futures.
+\item (Modern approach): Buy call options on the rate at 5\%
+\item Sell call options on the rate at 5.25\%
+\item Same with binaries
+\end{itemize}
+\end{exampleblock}
+
+[picture]
+
+}
+ 
+\frame{
+\begin{exampleblock}{You need to build a risk model to determine the 1\% VaR for a long only portfolio}
+
+
+\begin{itemize}
+\item (Traditional approach) Calculate the historical 1\% tail for the assets in the portfolio.
+\item (Modern approach) For each asset in the portfolio find the market price range with a 1\% probability. Calculate the value of the portfolio at these prices.
+\begin{itemize}
+\item This will be a worst case estimate since all the assets are unlikely to all move against you.
+\item The combined value of put options at these prices is the price you need to pay to ensure the portfolio never falls below this worst case number.
+\end{itemize}
+\end{itemize}
+\end{exampleblock}
+
+}
+
+\frame{
+ 
+\begin{exampleblock}{How much riskier is oil than gold?}
+
+
+\begin{itemize}
+\item Depends on what you mean by risky.
+\item (Traditional approach): Guess/ look at historical prices / build factor model
+\item (Modern approach): Ask the market
+\begin{itemize}
+\item Calculate market value of volatility swap on oil and gold. Take ratio.
+\item Calculate the market probability of a 50\% drop in the assets over some time horizon. Take ratio
+\item Etc.
+\end{itemize}
+\end{itemize}
+\end{exampleblock} 
+
+}
+ 
+ 
+\frame{
+\begin{exampleblock}{You think that equites are good value because the equity risk premium is high.}
+
+
+\begin{itemize}
+\item (Traditional approach) Buy some equites. Go fishing.
+\item (Modern approach) If you think the risk premium represents market fears of volatility sell a volatility swap (or equivalent). Go fishing.
+\end{itemize}
+\end{exampleblock}
+ 
+}
+ 
+\end{document}
+
+Other stuff:
+
+Fixed income. (rolldown)
+QIC stories
+
+
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.3]{ab12}
+\caption{Pick two cards}
+\end{figure}
+\end{center}
+
+
+ 

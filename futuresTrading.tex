@@ -1,0 +1,487 @@
+
+% --------------------------------------------------------
+% -*-TeX-*- -*-Soft-*- Soft Wrapping
+% --------------------------------------------------------
+% AMS-LaTeX Paper ****************************************
+% --------------------------------------------------------
+% Submitted:      Trans.Amer.Math.Soc. in February 1995
+% Final Version:  July 1995
+% Accepted:       June 1995
+% --------------------------------------------------------
+% This is a journal top-matter template file
+% for use with AMS-LaTeX.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{tran-l}
+
+%\usepackage[active]{srcltx} % SRC Specials
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{caption}
+% Over-full v-boxes are due to the \v{c} in author's name
+\vfuzz2pt % Don't report small over-full v-boxes
+
+% THEOREM Environments ------------------------------------
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+% MATH ----------------------------------------------------
+\DeclareMathOperator{\RE}{Re}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\ess}{ess}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\h}{\mathcal{H}}
+\newcommand{\s}{\mathcal{S}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\BOP}{\mathbf{B}}
+\newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+\newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Field}{\mathbb{F}}
+\newcommand{\RPlus}{\Real^{+}}
+\newcommand{\Polar}{\mathcal{P}_{\s}}
+\newcommand{\Poly}{\mathcal{P}(E)}
+\newcommand{\EssD}{\mathcal{D}}
+\newcommand{\Lom}{\mathcal{L}}
+\newcommand{\States}{\mathcal{T}}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left<#1\right>}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+% -----------------------------------------------------------
+\begin{document}
+
+\title[]
+{Futures trading}
+
+\author{}
+
+\address{}
+
+\email{}
+
+\thanks{}
+
+\thanks{}
+
+\subjclass{}
+
+\keywords{}
+
+\date{}
+
+\dedicatory{}
+
+\commby{}
+
+% -----------------------------------------------------------
+
+
+% -----------------------------------------------------------
+\maketitle
+% ----------------------------------------------------
+
+
+[intro]
+
+EFP, CFD, bets, etc all futures.
+
+\section{Preliminaries}
+
+A futures contract is an agreement to buy or sell a thing at a fixed point in the future. We use the notation $F_T(t)$ to denote the price at time $t$ to deliver something at a futures time $T>t$. The price of the underlying asset at $t$ will be $S(t)$.
+
+The value at $T$ of the contract purchased at time $t$ then the price of the asset at expiry less the price of the futures contract.
+
+\[ \Pi = \mbox{Price at expiry - agreed futures price}  = S(T)-F_T(t) \]
+
+For example the price in January of a futures contract on a share of ABC corporation delivered in December might be \$120. If the spot price of the share in December is \$80 then the value in December is 
+
+\[\Pi =  S(T) - F_T(t)  = 80 - 120 = -\$40 \]
+
+If you had bought the futures contract in January you would lose \$40. Similarly if you had sold the futures contract you would have made \$40.
+
+One use for futures is \textbf{event prediction}. A bet on a horse race, or the spin of a roulette wheel, or the outcome of an election is  a futures contract on an event. The underlying asset  is valued at \$1 if the event occurs and at \$0 if the event doesn't occur. 
+
+%\[S(T) = \begin{cases} \item 1 if event occurs\\ \item 0 if event doesn't occur  \end{cases} \]
+
+For these markets futures price $F_T(t)$ is the \textbf{implied probability} of the event.
+
+
+%Consider binning next two paragraphs
+The price of the most futures contact is (usually) determined by arbitrage. Buying a futures contract has a similar outcome to borrowing money and buying the underlying asset. The price of the futures contract therefore reflects the cost of current price, the cost of the loan, and the value of any cash flows coming from the asset (in this case dividends from the share).
+
+Two notable exception to arbitrage rule are \textbf{commodity futures} and \textbf{event prediction futures}. For commodity futures the arbitrage portfolio (borrowing money and buying the asset) provides an upper bound to the futures price, but without a commodity lending market no lower bound exists. For event prediction futures there is no arbitrage portfolio since the asset is a future event that can't be owned in a meaningful way except through the futures contract itself.  
+
+
+\section{Basics}
+
+\subsection{Entering and maintaining a futures contract}
+
+A futures contract is a swap: The buyer agrees to pay the forward price (the fixed leg of the swap) in exchange for the asset (the floating leg). The seller takes the opposite position. 
+
+The "future" is also a financial asset in itself. When the future is first created it has a value of zero since both legs of the swap are valued equally. However, as the price of the underlying asset changes then the value of the future will also change. If the future is valued positively for one party in the contact, then it will be valued negatively by the other party. To insure against the risk of the counter party defaulting on their negatively valued future, traders use  a process of \textbf{margining} to cover the profit or loss of a trade (see below). 
+
+Some confusion can be caused but the terms "buy" and "sell" for futures contracts since nothing is immediately being bought or sold. It is possible to "sell" a futures contract that you do not own, unlike a normal asset, since the object being sold is a promise of a future action. I can sell a promise to sell a barrel of crude oil next week for \$100 without owning the either the oil or another futures contract. 
+
+ On a deeper level the terms buy/sell are arbitrary: A contract to buy the asset for cash is a contract to sell cash for the asset. A bet on election candidate $A$ is bet against candidate $B$. The words "buy" and "sell" are a convenience to  keep track of whether we benefit or suffer from a higher value of the underlying asset.
+
+\medskip
+
+\textit{Cash settlement vs physical settlement}\\
+
+A futures contract is \textbf{cash settled} if at maturity the value $F_T(t)-S(T)$ are exchanged in cash. Alternatively a contract is \textbf{physically settled} if seller provides the physical asset for the agreed cash. Theoretically there is no value difference between the two kinds of settlement. A buyer who receives $(S(T)-F_T(t))$ for a cash settled contract can purchase the asset in the spot market for $S(T)$ and so effectively pay $F_T(t)$ in exchange for the asset. However there are practical reasons to prefer physical or cash settlement: most futures traders are careful to trade out of physically delivered contracts to avoid taking/making delivery of large amounts of physical product.
+
+[anecdote about physical delivery]
+
+\medskip
+
+\textit{Margining}\\
+
+Since settlement occurs in the future it is possible that that one side will default on their obligation.  This risk can be substantially reduced through a \textbf{margining} process. If a futures contract is margined both sides put up some collateral to cover possible variations in the value of the contract. The initial collateral is called an \textbf{initial margin}; the process of obtaining additional collateral is called a \textbf{margin call}; and the amount of additional collateral called a \textbf{variation margin}. If the paying side is unable or unwilling to provide the extra collateral the position is sold (or bought) into the market and any losses are covered by the \textbf{initial margin}. If initial margin is sufficiently large, and there are enough other buyers or sellers transacting in the market, there is much reduced chance of default. 
+
+\medskip
+\textbf{Example: margining for an event prediction future}\\
+
+Al and Bob, enter into a bet on a boxing match. The contract specifies that if the boxer in the red trunks wins the ``asset'' is worth \$1 and otherwise \$0. Initially the gamblers agree on a price of \$0.5 (implying a 50\% probability) with Al the buyer and Bob the seller (meaning..). Both sides put up \$0.2 in collateral to a third person named Eric. As the fight gets underway boxer in the red trunks takes a severe beating in the first round. Others are still placing bets on the fight but the going price is now \$0.4 (implying a 40\% probability). Eric requests a variation margin of \$0.1 from Al to cover the change. If Al hands over the money Eric gives it to the Bob. If not Eric finds another gambler to take the bet at \$0.4, takes \$0.1 to cover the loss and refunds the remaining \$0.1 of collateral to Al. 
+
+\medskip
+\textbf{Margining an commodity future}
+
+Al and Bob are futures traders. Al enters into a contract to buy 1000 barrels of west Texas Intermediate crude from Bob for delivery in one month at \$95 per barrel. Both Al and Bob post 20\% collateral with the exchange which comes to  \$95*0.2*1000 = \$19,000. Both positions are initially worth zero.
+
+After one day the final traded price is \$100 per barrel. Al's position is now worth \$5000 and Bob's position -\$5000. The exchange transfers this through the margin accounts so Al has \$19,000+\$5000 = \$24,000 and Bob has \$19,000-\$5,000 = \$14,000. 
+
+Each trader now needs \$20,000 in collateral (\$100 per barrel times 1000 barrels). The exchange gives Al back \$4,000 and requires \$6,000 from Bob. If Bob is unable to to fund the new margin the exchange finds another seller for 1000 contracts at 100 (or whatever they can get), and refunds Bob his \$14,000. 
+ 
+[Picture of collateral flow]
+
+\textit{Rolling}\\
+
+For practical reasons futures contracts are usually only traded at a limited number of  maturities. Investors wanting a continuous exposure to the asset will sell (buy) the contract as it approaches expiry and buy (sell) a contract with a later maturity. If the transactions are simultaneous the investor is left with a constant exposure to the asset as long as there is always a new contract to roll into.
+
+[picture of rolling an equity contract over four months ]
+
+\medskip
+\textbf{Example: Rolling an equity future}\\
+
+Suppose today is September 28 and we have a long futures position in an equity future that expires in two days on September 30.  If the current spot price is 100, the risk free rate is 5\% and the dividend is 3\% the futures are priced thus:
+
+\[ September future  = S(t)\exp((r-q)T) =  100 \exp ((0.05-0.03)*2/365) = 100.011 \]
+
+\[ October future  = S(t)\exp((r-q)T) =  100 \exp ((0.05-0.03)*32/365) = 100.175 \]
+
+We wish to keep a constant exposure so we need to sell the September future and buy the October future. There is no explicit cost to rolling the futures since both contracts are initially worth zero
+
+Ideally both trades (selling September and buying October) will occur simultaneously. Most futures markets have a \textbf{calendar spread} market to achieve this. In the calendar spread market the price will be 100.175-100.011 = 0.164. Buying the calendar spread means simultaneously selling September and buying October. The effect is to change our long September position into a long October position. Then on October 28 we would again roll the contract by selling October and buying November. In this way we would have a continuous exposure to the asset.
+
+[Picture  of rolling futures exposure from Sep to Oct to Nov]
+
+\subsection{The choice of futures vs physical}
+
+Futures contracts are a way to have exposure to an asset without the difficulties of actually owning the asset. Purchasing an asset cost and benefits relative to holding a futures contract. The choice of futures or physical depends on a number of differences:
+
+\medskip \textit{1. Control over the asset }
+
+The first main difference is that a holder of a future does't have any control over the asset. They are not owners and so have no rights. In particular they can't participate in shareholder votes (equities) and they can't sell the asset if it has a temporary price spike (commodities). 
+
+
+\medskip \textit{2. Dividends}
+
+A futures buyer doesn't receive dividends. However the expected price of the dividends is priced into the futures so futures holder effectively receives dividends through a lower price of the futures contract. The \textbf{implied dividend rate} from the futures price can be better or worse than the actual realised dividend rate.
+
+(Possibly an example)
+
+\medskip \textit{3. Financing rate}
+
+The futures contract buyer doesn't have to pay for the asset. The futures contract is effectively a loan to buy an asset together with a contract to sell the asset in future, however this loan usually has a much lower interest rate than would be available to the buyer.\footnote{This is because the implied interest rate on the future is set by large financial companies who can borrow cheaply to arbitrage the future.} Since most people have to pay significantly above the risk free rate this can make a big difference to the cost of futures vs physical.
+
+The example below compares the cash flows of buying the asset (an equity) or a futures contract for a year given the following situation:
+
+\begin{itemize}
+\item Spot price: 100
+\item Risk free rate: 5\%
+\item Borrowing rate: 7\%
+\item Expected dividend rate: 3\%
+\item Realized dividends (paid after one year): \$3
+\item Futures price: $100*\exp((0.05-0.03)*1)= 102.02$
+\item Asset price after one year: \$110
+\end{itemize}
+
+\begin{tabular}{|c|c|c|}
+\hline
+Time & Buy asset & Buy future\\
+\hline
+Today & \shortstack{Borrow \$100\\ Buy Asset for \$100 }  & Buy future at \$102.01 \\
+\hline
+One year &  \shortstack{Sell asset for \$110\\ Repay loan for $100*\exp(0.07*1) = 107.25$\\ Receive \$3 dividends} & \shortstack{Buy asset for \$102.01\\ Sell asset for \$110} \\
+\hline
+Profit & 5.74 &  7.98 \\
+\hline
+\end{tabular}
+
+In this case it's cheaper to buy the futures contract. This might change if there was some large advantage to owning the physical asset or if the implied dividend rate was much lower than the actual dividend.
+
+
+\subsection{Time horizon choice and the roll} 
+
+If there are futures contract expiring at different times which should be used? This depends on a few things:  
+
+\medskip \textit{1. Investment horizon}\\
+
+If you have an investment horizon of two years it's usually preferable to have a futures contract expiring in two years. However the same effective exposure can be maintained by rolling shorter dated futures. 
+
+\medskip \textit{2. Liquidity}\\
+
+If one contract has more trading volume it will usually be easier and cheaper to trade. Most investors have investment horizons longer than a month or a quarter but they use these futures contracts because everybody else does so the buy/sell spread isn't too large and it's possible to trade in or out of a position without moving the price too much.
+
+\medskip \textit{3. Cost of carry: implied dividend and borrowing rates}\\
+
+Each future will have a different \textbf{cost of carry} comprising interest rates, dividend expectations (for equities and bonds), and additionally storage costs and the convenience yield for commodities. A futures contract at a particular expiry is effectively a bet on the asset price \textit{combined} with a bet on interest rates, and dividends.
+
+For example if the interest rate curve implied by the futures prices is very steeply positive the effective borrowing rate for the longer expires will be higher than for the shorter expiries, so it might be better to trade in the shorter expiry. Similarly the implied dividend rate might be much higher at the longer expiry than at the short expiry. 
+
+A caution: if the curves are priced properly the upward sloping curve means that short rates will be even higher in the future\footnote{By arbitrage the long rate is the sum of the expected short rates.} and so there won't be any advantage to using the short expiry contracts. Strategically choosing the expiry to take advantage of the structure of the interest rates curve is a bet on fixed income market. Should an equity trader be making fixed income trades? Maybe. 
+
+
+\section{Four futures trading examples}
+
+This section gives four common uses for futures. 
+
+\subsubsection{Alpha-beta separation with equities}
+
+The returns of an investment manager can be divided between market returns (beta) and returns due to the specific skill of the manager (alpha). For example, the returns of an equity investment manager can be divided between the index return and the return in excess of the index. The investor who hires the manager doesn't want the exposure to the benchmark, they want exposure to the \textit{excess return}. Alpha-beta separation is a method to cut out the beta from returns to isolate the alpha.
+
+Say an investment manager has bought \$1000 worth of equities. If the investor short sells \$1000 worth of the index then they will only receive the difference between the returns of the stocks picked by the manager and the average stock. To simplify the example assume that there are no dividends and no costs for the short sale.
+
+
+\textit{Alpha-beta separation with cash short sale}
+
+The excess return can be captured without futures with a short sale. Say over one year the index returns 10\%, the manager 15\%, and the risk free rate is 5\%. An investor invests \$1000 with the manager and short sells \$1000 of the index\footnote{The short sale is a loan of \$1000 worth of the index which is sold at market, invested in the risk free asset, and repurchased after a year.}.
+
+
+\begin{tabular}{|ccc|}
+\hline
+Time & Action & Cashflow\\
+\hline
+0 & Buy \$1000 of manager, short sell \$1000 worth of index & +\$1000 from short sale, -\$1000 to manager\\
+1 & Buy index to cover short sale and sell manager & -\$1100 to repay short sale, +\$1150 from manager's stocks\\
+\hline
+\end{tabular}
+
+The total return is +1150-1100 = \$50. The trade has isolated the additional skill of the manager over the general index return. 
+
+
+\textit{Alpha beta separation with index futures}
+
+The same outcome can be achieved with futures. The is a simpler process since there is no need for a short sale of the index.
+
+
+\begin{tabular}{|ccc|}
+\hline
+Time & Action & Cashflow\\
+\hline
+0 & Buy \$1000 of manager, sell future for F = 1000*(1+0.05) = 1050 &  -\$1000 to manager\\
+1 & Pay 1050-1100 = -50 on sold future sell manager & -\$50 from future, +\$1150 from manager's stocks\\
+\hline
+\end{tabular}
+
+
+The total is again \$50. In the construction of the example there's no difference between the two choices however in reality differences between borrowing and lending rates and dividends complicate things slightly. We'll get to that later.
+
+\textit{Alpha-beta separation with a beta adjustment}
+
+It's possible that the index is not the appropriate benchmark. For example if the manager's stocks have a beta of 2 (they move \$2 for each \$1 move in the index) then a \$1000 portfolio needs \$2000 short position to correctly separate the beta. 
+
+
+\subsubsection{Speculating on long term interest rates with bond futures}
+
+Bond futures can be used to generate exposures to long term interest rates. Certain maturities are  
+
+%Imagine we hold a 10 year zero coupon government bond with a face value of 100M. If the current 10 year interest rate is 5\% the price of the bond is given by
+
+%\[P(t) = 100M \exp(-0.05*10 ) = 60.6M\]
+ 
+ %If the interest rate increases to 6\% the market value of the bond becomes
+ 
+ %\[P(t) = 100M \exp(-0.06*10 ) = 54.9M\]
+ 
+ %(Parenthetically, we could know this by calculating the \textbf{duration} of the bond)
+ 
+ %This is a 10\% loss in the value of the bond.  To protect the bond from changes in rates we can  sell a futures contract on a 10 year bond.
+ 
+ %\footnote{We could also enter an 10 year interest rate swap with a notional value equal to the \textbf{bond duration} but here we're concerned with futures.}
+ 
+%Let's say we choose a futures contract with 30 days to expiry and the 30 day interest rate is 1\%. The price of the futures contract is 
+
+%\[F(t) = P(t)\exp(-0.01*30/365) = 60.70M\]
+ 
+%If we sell this this futures contract then for the next 30 days we have an almost exact opposite exposure to as the bond. To get a more exact exposure we could hold ($1/\exp(-0.01*30/365) = 0.99918$) of the future but you'd agree that's fairly close already.\footnote{Also if we go down this line we need to adjust the exposure each day to account for the changing discount rate on the future.} 
+
+
+%\begin{tabular}{|ccc|}
+%\hline
+%&Bond & Bond future \\
+%\hline
+%Price (rates @ 5\% ) &60.65M & 54.88M \\
+%Price (rates @ 6\%) & 60.70 & 54.92M \\
+%\hline
+%\end{tabular}
+
+%The table shows that the future provides a fairly good hedge for the interest rate risk on the bond. In our example we only have the protection for the next 30 days, but then we could sell a new future to maintain a neutral exposure to rates. 
+
+\subsubsection{Hedging interest rates with bank bill futures}
+
+
+
+
+\subsubsection{Converting a loan between currencies}
+
+%make sure picture of currency square arbitrage in pricing chapter
+
+There are two main reasons to convert a loan between currencies.
+
+\begin{enumerate}
+\item A borrower raises money abroad in foreign currencies to fund domestic activities. In this case the borrower will generally want to convert the loan into domestic currency to avoid currency risk. 
+\item A borrowers wants to take advantage of lower foreign interest rates and convert a domestic loan into foreign currency. 
+\end{enumerate}
+
+In either case the conversion can be achieved by trading a futures contract against the value of the loan. Since the arbitrage trade for the futures contract involves lending money in one currency and borrowing in another the futures cash flows combined with the loan are the same switching the loan currency.
+
+Say I borrow \$100USD for a year at 10\% interest. The one year rate in Japan is 1\% so I want to convert the loan to yen.  Assume that both rates are risk free and zero coupon so I repay the whole amount after one year and that the current exchange rate is 100yen/USD. 
+
+Using simple compounding the futures price for Yen/USD is:
+
+\[  \]
+
+%Maybe put environmental variables in box for easy reference
+
+There are three ways I could go about the trade:
+
+\textit{Yen Loan}\\
+
+
+
+
+
+I can enter a futures contract to sell  \$11,051yen in one year for the forward price:
+
+\[F(t)= S(t)\exp((r_{Japan}-r_{US})*1) = 100 * \exp((0.01-0.1)*1) =  91.39 JPY/USD \]
+
+This contract 
+
+Borrow \$100 usd. Swap into yen by selling USD/JPY to create a synthetic JPY loan.
+
+\subsubsection{Creating a dividend swap}
+
+Equity futures contracts embed an implied divided rate. The price of the future for one period can be written as \[F_1(0) = S(0)(1+r-d) \] where 
+
+\begin{itemize}
+\item $S(0)$ is the spot price of the equity at time $0$
+\item $r$ is the risk free rate over the period from $t=0$ to $t=1$
+\item $d$ is the dividend rate over the period from $t=0$ to $t=1$
+\end{itemize}
+
+The dividend rate is implied by the futures contract price by rearranging the futures price
+
+\[ d = (1+r)-frac{F_t(t)}{S(t)}  \]
+
+It is also possible to create an exposure to realised equity dividends without an exposure to the spot price. The process involves buying the equity and selling the future. The difference between the two is the difference between the dividend implied by the future and the realised future.
+
+Example:
+\begin{itemize}
+\item Spot: 100
+\item Risk free rate between t=0 and t=1:: 0.05
+\item Implied dividend rate between t=0 and t=1: 0.02
+\item Realised dividend: \$d (unknown at t=0)
+\end{itemize}
+
+Then the future is Future: \[100*(1+ 0.05-0.02) = 103\]
+
+
+To create a synthetic long dividend exposure
+
+\begin{tabular}{|ccc|}
+\hline
+Time & Action & Cashflow\\
+\hline
+0 & Borrow \$100 to buy equity @ 5\%, Sell future @\$103 & +\$100 from loan, -\$100 from equity purchase \\
+1 & Receive dividend, sell equity at \$103, repay loan for & -\$105 to repay loan, +\$103 from equity sale + \$d from dividend\\
+\hline
+\end{tabular}
+
+The total profit from the trade is \$d-2. This is a pure linear long position on the size of the realised dividend: any movement in spot has no effect on the profitability of the trade.
+
+
+\begin{tabular}{|ccc|}
+\hline
+Time & Action & Cashflow\\
+\hline
+0 & Short sell equity at \$100 and invest proceeds at @ 5\%, Buy future @\$103 & +\$100 from short sale proceeds \\
+1 & Pay dividend, buy equity at \$103 to cover short sale & +\$105 from invested cash, -\$103 from equity purchase - \$d from dividend\\
+\hline
+\end{tabular}
+
+The total profit from the trade is 2-\$d. This is a pure linear short position on the size of the realised dividend. 
+
+
+
+\textit{General process for a long dividend swap}
+
+
+In general for the one period case:
+
+\begin{itemize}
+\item Spot: S(0)
+\item Risk free rate between t=0 and t=1: $r$
+\item Implied dividend rate between t=0 and t=1:  $d_I$
+\item Realised dividend: \$$d_R$ (unknown at t=0)
+\end{itemize}
+
+
+
+To create a synthetic long dividend exposure
+
+\begin{tabular}{|ccc|}
+\hline
+Time & Action & Cashflow\\
+\hline
+0 & Borrow \$S(0) to buy equity @ r\%, Sell future @\$ $S(0)(1+r-d_I)$ & +\$S(0) from loan, -\$S(0) from equity purchase \\
+1 & Receive dividend, sell equity at \$ $S(0)(1+r-d_I)$, repay loan for & -\$ $S(0)(1+r) $to repay loan, +\$ $S(0)(1+r-d_I)$ from equity sale + \$ $d_R$ from dividend\\
+\hline
+\end{tabular}
+
+The total profit from the trade is  \[d_R-S(0)d_I \]. This is a pure linear long position on the size of the realised dividend: any movement in spot has no effect on the profitability of the trade.
+
+
+\begin{tabular}{|ccc|}
+\hline
+Time & Action & Cashflow\\
+\hline
+0 & Short sell equity at \$ S(0) and invest proceeds at @ r\%, Buy future @$S(0)(1+r-d_I)$  & +\$S(0) from short sale proceeds \\
+1 & Pay dividend, buy equity at \$$S(0)(1+r-d_I)$  to cover short sale & +\$$S(0)(1+r)$  from invested cash, -\$$S(0)(1+r-d_I)$  from equity purchase - \$$d_R$ from dividend\\
+\hline
+\end{tabular}
+
+The total profit from the trade is \[ S(0)d_I-d_R \]. This is a pure linear short position on the size of the realised dividend. 
+
+
+
+
+
+
+%\subsubsection{Trade carry curve (simple roll down)}
+
+\end{document}

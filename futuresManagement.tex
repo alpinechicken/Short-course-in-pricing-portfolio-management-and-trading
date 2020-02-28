@@ -1,0 +1,324 @@
+% --------------------------------------------------------
+% -*-TeX-*- -*-Soft-*- Soft Wrapping
+% --------------------------------------------------------
+% AMS-LaTeX Paper ****************************************
+% --------------------------------------------------------
+% Submitted:      Trans.Amer.Math.Soc. in February 1995
+% Final Version:  July 1995
+% Accepted:       June 1995
+% --------------------------------------------------------
+% This is a journal top-matter template file
+% for use with AMS-LaTeX.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{tran-l}
+
+%\usepackage[active]{srcltx} % SRC Specials
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{caption}
+% Over-full v-boxes are due to the \v{c} in author's name
+\vfuzz2pt % Don't report small over-full v-boxes
+
+% THEOREM Environments ------------------------------------
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{subsection}
+% MATH ----------------------------------------------------
+\DeclareMathOperator{\RE}{Re}
+\DeclareMathOperator{\IM}{Im}
+\DeclareMathOperator{\ess}{ess}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\To}{\longrightarrow}
+\newcommand{\h}{\mathcal{H}}
+\newcommand{\s}{\mathcal{S}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\BOP}{\mathbf{B}}
+\newcommand{\BH}{\mathbf{B}(\mathcal{H})}
+\newcommand{\KH}{\mathcal{K}(\mathcal{H})}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Field}{\mathbb{F}}
+\newcommand{\RPlus}{\Real^{+}}
+\newcommand{\Polar}{\mathcal{P}_{\s}}
+\newcommand{\Poly}{\mathcal{P}(E)}
+\newcommand{\EssD}{\mathcal{D}}
+\newcommand{\Lom}{\mathcal{L}}
+\newcommand{\States}{\mathcal{T}}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\seq}[1]{\left<#1\right>}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\essnorm}[1]{\norm{#1}_{\ess}}
+% -----------------------------------------------------------
+\begin{document}
+
+\title[]
+{Futures portfolio management}
+
+\author{}
+
+\address{}
+
+\email{}
+
+\thanks{}
+
+\thanks{}
+
+\subjclass{}
+
+\keywords{}
+
+\date{}
+
+\dedicatory{}
+
+\commby{}
+
+% -----------------------------------------------------------
+
+
+% -----------------------------------------------------------
+\maketitle
+% ----------------------------------------------------
+
+
+
+A futures contract specifies a fixed price to buy or sell something in the future. If I agree to buy your bicycle next week for \$10, that's a futures contract. In a fully defined market everything has a price in \textbf{time} and \textbf{space}: the price of the bicycle for purchase next week will probably be different from the price several years from now, or the price next week if I have to pick it up from Siberia. 
+
+The \textbf{space time continuum} of futures prices has different characteristics for different types of assets. The price of a barrel of oil delivered in May can't be too much higher than the price of a barrel in June, otherwise people could risklessly buy the May oil and sell the June oil at a profit. In a similar way the price of goods at nearby points in space can't be too different otherwise people could buy at place $A$ and cheaply transport to sell at place $B$.  
+
+In this way the price of a futures contract is set partly by the \textbf{spot price} of the asset and partly by the arbitrage constraints: the \textbf{borrowing/lending rates}, the \textbf{dividend yield} (for equities), and the \textbf{storage cost} and \textbf{convenience yield}  (for commodities). Managing a portfolio of futures contracts involves managing all these exposures. 
+
+%For most financial assets the fabric of price space-time is rigidly connected through these arbitrages. Here managing a portfolio of futures is trivial because futures delivered at different times all behave roughly the same way. But for some assets the fabric is stretched or torn when for one reason or another the arbitrages are not possible. That's where trouble starts. 
+%Maybe put this paragraph in another chapter?
+
+
+\section{The problem:}
+
+We have a portfolio of futures contracts on one underlying asset. We want to know the total sensitivity to the underlying asset and any other sensitivities in the portfolio. 
+
+In one sense this is a really simple problem: futures have a linear relationship to the underlying price so you can easily calculate the \textbf{delta} (sensitivity to the underlying)  portfolio. This sensitivity doesn't change as the underlying price changes so it's easy to understand what's going on in the portfolio. But the futures prices are adjusted by the \textbf{cost of carry curve} which depends on interest rates, dividends; and the nebulously defined ``convenience yield'' for physical commodities. 
+
+%This makes each futures portfolio like a fixed income portfolio and fixed income management must inherit the tools of fixed income portfolio management like \textbf{duration} and \textbf{convexity} for each of these curves. 
+
+%We already have already developed the tools for fixed income portfolio management in a previous chapter so we won't revisit it here. 
+
+\section{Elements of futures value:}
+
+The price of a futures contracts generally has a predictable relationship to the underlying asset through arbitrage. These are:
+
+\medskip
+\begin{tiny}
+\begin{tabular}{|c|c|c|}
+\hline
+Asset &  Futures price & sensitivities\\
+\hline
+Non-dividend paying equity & $F_T(0) = S(0)\exp(rT)$ & \begin{tabular}{c}$S(0)$ - spot price\\$r$ - rate\\ $T$- time to expiry \end{tabular}\\
+Dividend paying equity& $F_T(0) = S(0)\exp((r-d)T)$ & $d$- dividend\\
+Currency & $F^{d/f}_T(0) = S^{d/f}(0)\exp((r_d-r_f)T)$ & \begin{tabular}{c}$S^{d/f}(0)$ - spot exchange rate (domestic/foreign)\\ $r_d$- domestic interest rate\\ $r_f$ - foreign interest rate \end{tabular}\\
+Commodity & $F_T(t) = S(0)\exp((r-c+s)T)$ & \begin{tabular}{c} $c$ - convenience yield\\$s$ - storage cost \end{tabular} \\
+Rates (forward rate) & $f(t_1,t_2) = \frac{y(t_2)t_2 - y(t_1)t_1}{t_2-t_1} $ & \begin{tabular}{c} $t_1$,$t_2$ - points in time\\$y(t)$ - zero coupon yield (interest rate)\end{tabular} \\
+\hline
+\end{tabular}
+\end{tiny}
+\medskip
+
+\textbf{Non-dividend paying equity}\\
+The price of the futures contract is the spot price adjusted for the interest rate ($r$) to expiry ($T$). This is the cost to buy one unit today with borrowed money and deliver it at time $T$.  The future contract is sensitive to changes in the spot price and also changes in the interest rate. 
+
+\textbf{Dividend paying equity}\\
+
+The price of the futures contracts is the spot price adjusted for the interest rate and expected dividends to expiry. This is the cost of buying one unit today with borrowed money and delivering at time $T$. Dividends received offset the cost of the loan.
+
+\textbf{Currency}\\
+
+The futures price is the spot price (exchange rate) adjusted for the difference between the domestic and foreign interest rates. The price reflects the cost of borrowing in the domestic currency and  lending in the foreign currency.
+
+\textbf{Interest rates}\\
+
+An interest rate future (sometimes called a \textbf{forward rate agreement}) is a forward contract on a future interest rate.  The arbitrage price of the future will be the forward rate which is determined by the two zero rates.
+
+\textbf{Commodity}\\
+
+The price of a commodity future doesn't have a fixed relationship to the spot price. This because it isn't generally possible to borrow physical commodities to create a short sale. The price of a longer dated future can't be too much above a shorter dated contract -- otherwise there would be an arbitrage -- but it can be lower. Nonetheless it's nice to have formulas for things so some people like to think of a \textbf{convenience yield} as part of the cost of carry to complete a futures pricing formula. This is really a fudge number but it serves the same role as the dividend adjustment for equity futures. 
+
+The idea of the convenience yield is that there are some benefits from holding the physical commodity that you don't get by holding the long futures contract. Mostly this benefit is the ability to take advantage of temporary shortages and price spikes. But unlike a dividend the convenience yield isn't actually a payment; it can't be exchanged for anything and it can't be used to construct an arbitrage portfolio. Still it's possible to think of and manage a convenience yield curve like an rates curve. 
+
+\section{Simulation, perturbation, and attribution}
+
+%The behaviour of a portfolio of futures can be attributed to movement in the component sensitivities. Usually the spot price is the main component and so futures can be used as a substitute for the asset without worrying too much about anything else. For longer dated securities the cost of carry components are more important. For commodities movements in the cost of carry curve are sometimes the main source of variations in returns. 
+
+To explore the sensitivities we'll use two approaches: \textbf{simulation}, and \textbf{peturbation}. With simulation we adjust the value of the components to see what happens to the price; with perturbation we construct an expression for the sensitivities using a Taylor series and use it to estimate the change in the futures price from all its sensitivities. Attribution is the reverse problem, starting with a change in the futures price and determining which components caused it. 
+
+We'll use the example of a dividend paying equity index with futures at two maturities:
+
+\begin{center}
+\begin{tabular}{|ccccc|}
+\hline
+Maturity & Spot & Rate & Dividend & Futures price\\
+\hline
+1 year & 100 & 0.05 & 0.02 & 97.046\\
+10 years & 100 & 0.07 & 0.01& 54.882\\
+\hline
+\end{tabular} 
+\end{center}
+
+If some pricing factor changes from $x$ to $x'$ we can calculate the change in the value of the future by changing $x$ and holding everything else constant
+
+\[\Delta V = F(x') - F(x)  \]
+
+A Taylor series approximates the change in the futures price as a function of any factor $x$
+
+\[ \Delta V = \frac{\partial V}{\partial x}  (x-x') + \frac{1}{2}\frac{\partial^2 V}{\partial x^2} (x-x')^2 + O((x-x')^3) \]
+
+Where $O(x)$ are terms that are of order $x$ or smaller. Third order terms are small enough to ignore.
+
+\subsection{Example}
+
+If the yield curve shifts up by 1\% across the curve we can calculate the change in value directly
+
+\begin{eqnarray*}
+\Delta V_{F_1} =& F_1(r = 0.06) - F_1(r = 0.05) \\
+=& 100*\exp(-(0.05-0.02)*1) - 100*\exp(-(0.06-0.02)*1) = 0.97
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\Delta V_{F_{10}} =& F_1(r = 0.08) - F_1(r = 0.07) \\
+ =&100*\exp(-(0.08-0.01)*10) - 100*\exp(-(0.07-0.01)*10) = -5.22\\
+\end{eqnarray*}
+
+This is a good example of why interest rate risk needs to be managed carefully in a futures portfolio: The 1 year future loses 1\% of its value after the interest rate change, the 10 year future loses around 50\%. A 1\% increase in the interest rate has the same effect as a 50\% decrease in the spot price. 
+
+We can break this down a constructing the Taylor series for each factor.
+
+\begin{tiny}
+\begin{tabular}{|c|cccc|cccc|}
+\hline
+ & $F_1$ & &  & &$F_2$ &  & &\\
+ Sensitivity & spot price & rates & dividends& time to maturity & spot price & rates & dividends & time to maturity\\
+ \hline
+ $\frac{\partial V}{\partial x}$ & 0.97  & -97.04 & 97.04  & 2.91 & 0.55 & -548.81 & 548.81 & 3.29 \\
+ $\frac{\partial^2 V}{\partial x}$& 0 & -97.04& 97.04 & 0.09 & 0 & -5488.12 & 5488.12 & 0.1967 \\
+ $\Delta x$ & 0 & 0.01 & 0 & 0 & 0 & 0.01 & 0 & 0 \\
+ $(\Delta x)^2$  & 0 & 0.0001 & 0 & 0 & 0 & 0.0001 & 0 & 0\\
+ $\Delta V \simeq \frac{\partial V}{\partial x}\Delta x + \frac{1}{2} \frac{\partial^2 V}{\partial x^2}(\Delta x)^2$ & 0& 0.9655 &  0 & 0 & 0 & -4.94 & 0 & 0  \\
+ \hline
+ \end{tabular}
+ \end{tiny}
+ 
+ This is pretty close the exact number $-5.22$ from the simulation.
+ 
+ The same approach gives an estimate of the change in the futures price over one day:
+ 
+\begin{eqnarray*}
+\Delta V_{F_{10}} =& \frac{\partial V}{\partial T}  \frac{1}{365}  + \frac{1}{2}\frac{\partial^2 V}{\partial T^2}  \left(\frac{1}{365}\right)^2  \\
+ =& 3.29\frac{1}{365} + 0.5 *0.09 \left( \frac{1}{365} \right)^2 = 0.00901
+\end{eqnarray*}
+ 
+ So the 10 year future gains around one cent per day from the passage of time.
+
+\section{Attribution}
+
+Say we have a non-dividend paying equity with the underlying at 100 and rates (across the curve) at 0.01
+
+\begin{itemize}
+\item $S(0) = 100$
+\item $r = 0.01$
+\item $F_1(0) = 100\exp(r*1) \approx 101.01$
+\end{itemize}
+
+Now simultaneously the spot price moves to 101 and the interest rate moves to 0.05.  The new price is $101*\exp(0.05*1) = 106.18$. How much of the change can be attributed to the spot price and how much to the interest rate?
+
+It depends on how you calculate it. If we think of the interest rate moving first it changes the price by 4.12 and the spot price moves it by a further 1.05
+
+
+\begin{eqnarray*}
+F_1(0; r=0.05,S(0)=100)  - F_1(0; r=0.01,S(0)=100)  \\
+= 100*\exp(0.05*1)  - 100*\exp(0.01*1)  = 4.12\\
+F_1(0; r=0.05,S(0)=101)  - F_1(0; r=0.05,S(0)=100)  \\
+= 101*\exp(0.05*1)  - 100*\exp(0.05*1)  = 1.05\\
+\end{eqnarray*}
+
+If we think of the spot price moving first it changes the price by 1.01
+
+\begin{eqnarray*}
+F_1(0; r=0.01,S(0)=101)  - F_1(0; r=0.01,S(0)=100) \\ 
+= 101*\exp(0.01*1)  - 100*\exp(0.01*1)  = 1.01\\
+F_1(0; r=0.05,S(0)=101)  - F_1(0; r=0.01,S(0)=101)\\
+  = 101*\exp(0.05*1) - 101*\exp(0.01*1)  = 4.16\\
+\end{eqnarray*}
+
+So the attribution depends on the order of price changes considered.  The total effect is the same but it's not always clear \textit{exactly} which effect is which. 
+
+\section{General schema}
+
+\begin{enumerate}
+\item Determine the sensitivities and pricing formula. E.g. $F_T(t) = S(0)\exp((r-d)T)$ for dividend paying equities\\
+\item For simulation: reprice the future changing the value of each factor\\
+\item For perturbation: calculate first and second order sensitivities and construct Taylor series\\
+\item For attribution: choose an order of effects (e.g. rate then dividends) and simulate the price changes adding one effect at a time\\
+\end{enumerate}
+
+
+
+\section{Questions}
+
+\textbf{Question 1}\\
+
+A commodity future is priced with the equation
+
+\[F_5 = S \exp(-(r-c+s)T) \]
+
+Where $S$ is the spot price, $r$ is the risk free rate to maturity, $s$ is the storage cost, and $T$ is time to maturity. 
+
+Set $S = 100$, $r = 0.01$, $c = 0.02$, $s=0.03$
+
+\begin{itemize}
+\item[(a)] How many futures would we need to hold to have the same exposure as holding one unit of the spot commodity?
+\item[(b)] What size of movement in rates, convenience yield, and spot price would move the futures price up by 10\%
+\item[(c)] Use a Taylor series to estimate the change in the futures price if one week passes and all other parameters remain the same
+\end{itemize}
+
+\textbf{Question 2}\\
+
+For a currency future with a spot exchange rate of 100 the domestic interest rate increases by 0.01 and the foreign rate also increases by 0.01. Attribute the futures price change in both possible orders. 
+
+
+ 
+ \end{document}
+ 
+ (use TS to calculate other changes to spot and time )
+
+General schema 
+
+Questions.
+
+(Calculate the equivalent moves that give the same price change for rates, divs, spot, and time)
+
+
+
+
+
+Other stuff:
+(issues: physical delivery)
+rigidities
+(no borrowing market)
+(no spot market at non-delivery dates)
+(no storage)
+
+For trading chapter
+Futures vs Swap
+Total return; accumulation index, spot return, futures return.
+Creating a dividend swap
