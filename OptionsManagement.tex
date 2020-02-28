@@ -22,17 +22,12 @@ We have a portfolio of \textbf{vanilla european options} on many underlying asse
 \item Determine the contribution of these different things to a change in portfolio value after it has happened. This is \textbf{attribution}.
 \end{enumerate}
 
-Both can be tricky. Options are \textbf{non-linear} in most of the things that affect their price. A portfolio that is quite insensitive to price moves today might be very sensitive tomorrow. Worse, the things that drive options prices tend to be related to each other. Prices are related to implied volatilities, implied volatilities are related to interest rates, interest rates are related to everything. A portfolio of options can become a tangled web of these non-linear and sometimes surprising interactions. Figure \ref{strangeOption} has an option that initially increases in value with higher volatility but then \textit{decreases} (this is unusual).
+Both can be tricky. Options are \textbf{non-linear} in most of the things that affect their price. A portfolio that is quite insensitive to price moves today might be very sensitive tomorrow. Worse, the things that drive options prices tend to be related to each other. Prices are related to implied volatilities, implied volatilities are related to interest rates, interest rates are related to everything. A portfolio of options can become a tangled web of these non-linear and sometimes surprising interactions. 
 
 We'll try to untangle this web by breaking down portfolio value and sensitivity into bite-size chunks. Here we face a tradeoff: if the model is too simple we lose much of the relevant information; if the model is  too complicated it's difficult to interpret and likely to be misspecified. It's a gloomy situation for the portfolio manager but a rich and fascinating study for the student of options portfolio management.
 
 Our approach is to start with the elements of option value and then look at the sensitivity of value to each element. Then we'll build methods to estimate the changes in value following from changes in these elements.
 
-\begin{figure}
-\includegraphics[width=5in]{pics/strangeOption.png}
-\caption{Options do strange things sometimes}
-\label{strangeOption}
-\end{figure}
 
 \section{Elements of option value}
 
